@@ -19,8 +19,8 @@ var CartItem = React.createClass({
 });
 
 CartItem.propTypes = {
-    name : React.PropTypes.string,
-    price : React.PropTypes.number,
+    name: React.PropTypes.string,
+    price: React.PropTypes.number,
     onRemove: React.PropTypes.func
 };
 

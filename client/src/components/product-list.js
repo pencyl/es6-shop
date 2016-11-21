@@ -9,28 +9,32 @@ var ProductList = React.createClass({
         var products = this.props.products.map(function(product) {
             return (
                 <Product
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                price={product.price}
-                isInCart={product.isInCart}
-                onAdd={onAdd}
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    description={product.description}
+                    price={product.price}
+                    isInCart={product.isInCart}
+                    onAdd={onAdd}
                 />
             )
         });
 
         return (
-            <ul className="products">
-                {products}
-            </ul>
+            <div className="products">
+                <h2>Products</h2>
+                <ul>
+                    {products}
+                </ul>
+            </div>
         );
     }
 
 });
 
 ProductList.propTypes = {
-    products : React.PropTypes.array,
-    onAdd : React.PropTypes.func
+    products: React.PropTypes.array,
+    onAdd: React.PropTypes.func
 };
 
 module.exports = ProductList;

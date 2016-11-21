@@ -23,7 +23,7 @@ var Cart = React.createClass({
                     <tfoot>
                         <tr>
                             <td>Total</td>
-                            <td>£{this.props.total}</td>
+                            <td colSpan="2">£{this.props.total}</td>
                         </tr>
                     </tfoot>
                 </table>

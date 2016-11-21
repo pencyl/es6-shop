@@ -10,7 +10,9 @@ var Product = React.createClass({
         return (
             <li className="product">
                 <h3>{this.props.name}</h3>
-                <p>£{this.props.price}</p>
+                <p>{this.props.description}</p>
+                <div className="image"></div>
+                <p className="price">£{this.props.price}</p>
                 <button onClick={this.add} disabled={this.props.isInCart}>Add to cart</button>
             </li>
         )
@@ -19,8 +21,9 @@ var Product = React.createClass({
 });
 
 Product.propTypes = {
-    name : React.PropTypes.string,
-    price : React.PropTypes.number,
+    name: React.PropTypes.string,
+    description: React.PropTypes.string,
+    price: React.PropTypes.number,
     isInCart: React.PropTypes.bool,
     onAdd: React.PropTypes.func
 };

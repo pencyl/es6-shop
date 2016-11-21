@@ -100,7 +100,7 @@ var Shop = React.createClass({
 });
 
 Shop.propTypes = {
-    products : React.PropTypes.array
+    products: React.PropTypes.array
 };
 
 module.exports = Shop;
