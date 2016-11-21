@@ -20,10 +20,6 @@ var Shop = React.createClass({
         };
     },
 
-    propTypes: {
-        products : React.PropTypes.array
-    },
-
     componentDidMount: function() {
         var self = this;
         fetch('/api/products').then(function(response) {
@@ -100,5 +96,9 @@ var Shop = React.createClass({
     }
 
 });
+
+Shop.propTypes = {
+    products : React.PropTypes.array
+};
 
 module.exports = Shop;
