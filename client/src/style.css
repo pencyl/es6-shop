@@ -1,3 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+header, .cart, .products {
+    flex: 1 100%;
+}
+
+@media all and (min-width: 320px) {
+    .cart, .products {
+        flex: 1 50%;
+    }
+}
+
+header {
+    background: tomato;
 }

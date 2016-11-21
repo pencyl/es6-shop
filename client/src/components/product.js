@@ -9,9 +9,9 @@ var Product = React.createClass({
     render: function() {
         return (
             <li className="product">
-            <h3>{this.props.name}</h3>
-            <p>£{this.props.price}</p>
-            <button onClick={this.add} disabled={this.props.isInCart}>Add to cart</button>
+                <h3>{this.props.name}</h3>
+                <p>£{this.props.price}</p>
+                <button onClick={this.add} disabled={this.props.isInCart}>Add to cart</button>
             </li>
         )
     }

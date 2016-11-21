@@ -8,10 +8,10 @@ var CartItem = React.createClass({
 
     render: function() {
         return (
-            <tr>
-            <td>{this.props.name}</td>
-            <td>£{this.props.price}</td>
-            <td><button onClick={this.remove}>Remove</button></td>
+            <tr className="cart-item">
+                <td>{this.props.name}</td>
+                <td>£{this.props.price}</td>
+                <td><button onClick={this.remove}>Remove</button></td>
             </tr>
         )
     }

@@ -16,9 +16,9 @@ var Cart = React.createClass({
         });
 
         return (
-            <div>
+            <div className="cart">
                 <h2>Cart</h2>
-                <table className="cart">
+                <table>
                     <tbody>{items}</tbody>
                     <tfoot>
                         <tr>

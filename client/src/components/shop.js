@@ -87,8 +87,10 @@ var Shop = React.createClass({
 
     render: function() {
         return (
-            <div>
-                <h1>Shop</h1>
+            <div className="wrapper">
+                <header>
+                    <h1>Shop</h1>
+                </header>
                 <ProductList products={this.state.products} onAdd={this.onAdd} />
                 <Cart items={this.state.cart} total={this.state.total} onRemove={this.onRemove} />
             </div>

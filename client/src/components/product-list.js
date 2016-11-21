@@ -20,7 +20,7 @@ var ProductList = React.createClass({
         });
 
         return (
-            <ul className="productList">
+            <ul className="products">
                 {products}
             </ul>
         );
