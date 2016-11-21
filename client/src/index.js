@@ -1,3 +1,4 @@
+var css = require('./style.css');
 var React = require('react');
 var ReactDOM = require('react-dom');
 
