@@ -1,31 +1,41 @@
-var React = require('react');
+import React, { Component, PropTypes } from 'react';
 
-var Product = React.createClass({
+class Product extends Component {
 
-    add: function() {
-        this.props.onAdd(this.props.id);
-    },
+    constructor(props) {
+        super(props);
+    }
 
-    render: function() {
+    add () {
+        const {onAdd, id} = this.props;
+        onAdd(id);
+    }
+
+    render () {
+        const {name, description, price, isInCart} = this.props;
         return (
             <li className="product">
-                <h3>{this.props.name}</h3>
-                <p>{this.props.description}</p>
+                <h3>{name}</h3>
+                <p>{description}</p>
                 <div className="image"></div>
-                <p className="price">£{this.props.price}</p>
-                <button onClick={this.add} disabled={this.props.isInCart}>Add to cart</button>
+                <p className="price">£{price}</p>
+                <button
+                    onClick={::this.add}
+                    disabled={isInCart}>
+                    Add to cart
+                </button>
             </li>
         )
     }
 
-});
-
-Product.propTypes = {
-    name: React.PropTypes.string,
-    description: React.PropTypes.string,
-    price: React.PropTypes.number,
-    isInCart: React.PropTypes.bool,
-    onAdd: React.PropTypes.func
 };
 
-module.exports = Product;
+Product.propTypes = {
+    name: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    isInCart: PropTypes.bool,
+    onAdd: PropTypes.func
+};
+
+export default Product;

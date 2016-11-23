@@ -1,7 +1,6 @@
-var css = require('./style.css');
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-var Shop = require('./components/shop');
+import css from './style.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Shop from './components/shop';
 
 ReactDOM.render(<Shop />, document.getElementById('root'));

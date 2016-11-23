@@ -1,11 +1,11 @@
-var React = require('react');
-var CartItem = require('./cart-item');
+import React, { Component, PropTypes } from 'react';
+import CartItem from './cart-item';
 
-var Cart = React.createClass({
+class Cart extends Component {
 
-    render: function() {
-        var onRemove = this.props.onRemove;
-        var items = this.props.items.map(function(item, i) {
+    render () {
+        const { items, total, onRemove } = this.props;
+        const List = items.map((item, i) => {
             return (
                 <CartItem key={i}
                     id={item.id}
@@ -19,11 +19,13 @@ var Cart = React.createClass({
             <div className="cart">
                 <h2>Cart</h2>
                 <table>
-                    <tbody>{items}</tbody>
+                    <tbody>
+                        {List}
+                    </tbody>
                     <tfoot>
                         <tr>
                             <td>Total</td>
-                            <td colSpan="2">£{this.props.total}</td>
+                            <td colSpan="2">£{total}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -31,12 +33,12 @@ var Cart = React.createClass({
         )
     }
 
-});
-
-Cart.propTypes = {
-    items: React.PropTypes.array,
-    total: React.PropTypes.number,
-    onRemove: React.PropTypes.func
 };
 
-module.exports = Cart;
+Cart.propTypes = {
+    items: PropTypes.array,
+    total: PropTypes.number,
+    onRemove: PropTypes.func
+};
+
+export default Cart;
