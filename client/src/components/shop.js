@@ -1,127 +1,97 @@
-var React = require('react');
-var ProductList = require('./product-list');
-var Cart = require('./cart');
+import React, { Component, PropTypes } from 'react';
+import ProductList from './product-list';
+import Cart from './cart';
+import { calculateTotal, iterateItems, discountTotal } from '../utils';
 
-function calculateTotal(items) {
-    var total = 0;
-    items.forEach(function(item) {
-        total += item.price;
-    });
-    return total;
-}
+class Shop extends Component {
 
-function discountTotal(total, discount) {
-    return Math.ceil(total * (1 - discount));
-}
-
-var Shop = React.createClass({
-
-    getInitialState: function() {
-        return {
+    constructor (props) {
+        super(props);
+        this.state = {
             products: [],
             cart: [],
             discount: 0,
             total: 0
-        };
-    },
+        }
+    }
 
-    componentDidMount: function() {
-        var self = this;
-        fetch('/api/products').then(function(response) {
-            return response.json();
-        })
-        .then(function(products) {
-            self.setState({ products: products });
-        })
-        .catch(console.error);
-    },
+    componentDidMount() {
+        fetch('/api/products')
+            .then((response) => response.json())
+            .then(products => this.setState({ products }))
+            .catch(console.error);
+    }
 
-    onAdd: function(id) {
-        var item;
-        this.state.products.forEach(function(product) {
-            if (product.id === id) {
-                item = product;
-            };
+    onAdd (id = 0) {
+        const {products, cart} = this.state;
+        const item = products.find(product => product.id === id);
+        const newCart = [...cart, item];
+        const total = calculateTotal(newCart);
+        const newProducts = iterateItems({
+            products,
+            id,
+            inCart: true
         });
-
-        var newCart = this.state.cart.slice();
-        newCart.push(item);
-
-        var newProducts = this.state.products.slice();
-        newProducts.map(function(product) {
-            if (product.id === id) {
-                product.isInCart = true;
-            }
-            return product;
-        });
-
-        var total = calculateTotal(newCart);
         this.setState({
             cart: newCart,
             products: newProducts,
-            total: total
+            total
         });
-    },
+    }
 
-    onRemove: function (id) {
-        var itemIndex;
-        this.state.cart.forEach(function(item, index) {
-            if (item.id === id) {
-                itemIndex = index;
-            };
+    onRemove (id = 0) {
+        const {products, cart} = this.state;
+        const itemIndex = cart.findIndex(item => item.id === id);
+        const newCart = [
+            ...cart.slice(0, itemIndex),
+            ...cart.slice(itemIndex + 1)
+        ];
+        const total = calculateTotal(newCart);
+        const newProducts = iterateItems({
+            products,
+            id,
+            inCart : false
         });
-
-        var newCart = this.state.cart.slice();
-        newCart.splice(itemIndex, 1);
-
-        var newProducts = this.state.products.slice();
-        newProducts.map(function(product) {
-            if (product.id === id) {
-                product.isInCart = false;
-            }
-            return product;
-        });
-
-        var total = calculateTotal(newCart);
         this.setState({
             cart: newCart,
             products: newProducts,
-            total: total
+            total
         });
-    },
+    }
 
-    onCoupon: function(discount) {
+    onCoupon(discount = 0) {
         this.setState({
-            discount: discount
-        })
-    },
+            discount
+        });
+    }
 
-    render: function() {
-        var discountedTotal = discountTotal(this.state.total, this.state.discount);
+    render() {
+        const {products, cart, total, discount} = this.state;
+        const discountedTotal = discountTotal(total, discount);
         return (
             <div className="wrapper">
                 <header>
                     <h1>Shop</h1>
                 </header>
                 <ProductList
-                    products={this.state.products}
-                    onAdd={this.onAdd}
+                    products={products}
+                    onAdd={::this.onAdd}
                 />
                 <Cart
-                    items={this.state.cart}
+                    items={cart}
                     total={discountedTotal}
-                    discount={this.state.discount}
-                    onCoupon={this.onCoupon}
-                    onRemove={this.onRemove}
+                    discount={discount}
+                    onCoupon={::this.onCoupon}
+                    onRemove={::this.onRemove}
                 />
             </div>
         )
     }
 
-});
+}
 
 Shop.propTypes = {
-    products: React.PropTypes.array
+    products: PropTypes.array
 };
 
-module.exports = Shop;
+export default Shop;

@@ -1,27 +1,34 @@
-var React = require('react');
+import React , { Component, PropTypes } from 'react';
 
-var CartItem = React.createClass({
+class CartItem extends Component {
 
-    remove: function() {
-        this.props.onRemove(this.props.id);
-    },
+    remove() {
+        const {onRemove, id} = this.props;
+        onRemove(id);
+    }
 
-    render: function() {
+    render() {
+        const { name, price} = this.props;
         return (
             <tr className="cart-item">
-                <td>{this.props.name}</td>
-                <td>£{this.props.price}</td>
-                <td><button onClick={this.remove}>Remove</button></td>
+                <td>{name}</td>
+                <td>£{price}</td>
+                <td>
+                    <button onClick={::this.remove}>
+                    Remove
+                    </button>
+                </td>
             </tr>
         )
     }
 
-});
-
-CartItem.propTypes = {
-    name: React.PropTypes.string,
-    price: React.PropTypes.number,
-    onRemove: React.PropTypes.func
 };
 
-module.exports = CartItem;
+CartItem.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    onRemove: PropTypes.func
+};
+
+export default CartItem;

@@ -1,33 +1,36 @@
-var React = require('react');
+import React, { Component, PropTypes } from 'react';
 
-var Coupon = React.createClass({
+class Coupon extends Component {
 
-    getCoupon: function(e) {
-        var self = this;
-        var coupon = e.target.value;
-        fetch('/api/coupon/' + coupon).then(function(response) {
-            return response.json();
-        })
-        .then(function(discount) {
-            self.props.onCoupon(discount.value);
-        })
-        .catch(console.error);
-    },
+    constructor(props) {
+        super(props);
+    }
 
-    render: function() {
+    getCoupon (e) {
+        const coupon = e.target.value || 0;
+        fetch(`/api/coupon/${coupon}`)
+            .then(response => response.json())
+            .then(discount => this.props.onCoupon(discount.value))
+            .catch(console.error);
+    }
+
+    render () {
         return (
             <tr className="coupon">
                 <td>Enter Coupon ({this.props.discount * 100}%)</td>
-                <td colSpan="2"><input type="text" onBlur={this.getCoupon} placeholder={"e.g. SAVE50"} /></td>
+                <td colSpan="2">
+                    <input type="text" onBlur={::this.getCoupon} placeholder={"e.g. SAVE50"} />
+                </td>
             </tr>
         )
     }
 
-});
-
-Coupon.propTypes = {
-    discount: React.PropTypes.number,
-    onCoupon: React.PropTypes.func
 };
 
-module.exports = Coupon;
+Coupon.propTypes = {
+    discount: PropTypes.number,
+    onCoupon: PropTypes.func,
+    getCoupon: PropTypes.func
+};
+
+export default Coupon;

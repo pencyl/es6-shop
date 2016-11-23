@@ -1,13 +1,11 @@
 module.exports = function(req, res) {
-    setTimeout(function() {
-        var value;
+    setTimeout(() => {
+        let value;
         if (req.params.id == 0) {
             value = 0;
         } else {
-            value = (Math.ceil(Math.random() * 100) / 100)
+            value = (Math.ceil(Math.random() * 100) / 100);
         }
-        res.send({
-            value: value
-        });
+        res.send({ value });
     }, 1000);
 };

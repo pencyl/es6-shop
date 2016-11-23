@@ -1,12 +1,15 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Product = require('./product');
+import React, { Component, PropTypes } from 'react';
+import Product from './product';
 
-var ProductList = React.createClass({
+class ProductList extends Component {
 
-    render: function() {
-        var onAdd = this.props.onAdd;
-        var products = this.props.products.map(function(product) {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const { onAdd, products } = this.props;
+        const List = products.map((product) => {
             return (
                 <Product
                     key={product.id}
@@ -24,17 +27,17 @@ var ProductList = React.createClass({
             <div className="products">
                 <h2>Products</h2>
                 <ul>
-                    {products}
+                    {List}
                 </ul>
             </div>
         );
     }
 
-});
-
-ProductList.propTypes = {
-    products: React.PropTypes.array,
-    onAdd: React.PropTypes.func
 };
 
-module.exports = ProductList;
+ProductList.propTypes = {
+    products: PropTypes.array,
+    onAdd: PropTypes.func
+};
+
+export default ProductList;
