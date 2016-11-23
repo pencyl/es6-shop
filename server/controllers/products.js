@@ -6,8 +6,7 @@ var products = [
 ];
 
 module.exports = function(req, res) {
-
     setTimeout(function() {
         res.send(products);
-    }, 2000);
+    }, 1000);
 };
