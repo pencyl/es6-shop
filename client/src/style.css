@@ -87,7 +87,6 @@ header, .cart, .products {
 }
 
 .cart tr {
-    border: 1px solid ghostwhite;
     border-bottom: 1px solid gainsboro;
 }
 
