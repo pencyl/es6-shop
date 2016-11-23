@@ -1,6 +1,6 @@
 export function calculateTotal(items) {
-    var total = 0;
-    items.forEach(function(item) {
+    let total = 0;
+    items.forEach((item) => {
         total += item.price;
     });
     return total;
