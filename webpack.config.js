@@ -4,7 +4,6 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: [
-        'webpack-hot-middleware/client',
         './client/src/index'
     ],
     output: {
@@ -12,19 +11,12 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/static/'
     },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: ['react-hot', 'babel'],
+                loaders: ['babel'],
                 include: path.join(__dirname, 'client/src')
-            },
-            {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
             }
         ]
     }

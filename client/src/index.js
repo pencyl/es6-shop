@@ -1,6 +1,31 @@
-import css from './style.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Shop from './components/shop';
+class Person {
 
-ReactDOM.render(<Shop />, document.getElementById('root'));
+    constructor(name) {
+        this.name = name;
+    }
+
+    getName() {
+        return this.name
+    }
+
+}
+
+class Introvert extends Person {
+
+    constructor(options) {
+        super(options);
+        this.quiet = true;
+    }
+
+    getName() {
+        const name = super.getName();
+        return `${name} is quiet`;
+    }
+
+}
+
+const person = new Introvert('Don');
+person.name; //Don
+console.log(person.name)
+person.quiet; //true
+console.log(person.getName()); //Don is quiet
