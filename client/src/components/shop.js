@@ -11,7 +11,7 @@ function calculateTotal(items) {
 }
 
 function discountTotal(total, discount) {
-    return total * (1 - discount);
+    return Math.ceil(total * (1 - discount));
 }
 
 var Shop = React.createClass({

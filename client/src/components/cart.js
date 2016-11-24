@@ -44,7 +44,9 @@ var Cart = React.createClass({
 Cart.propTypes = {
     items: React.PropTypes.array,
     total: React.PropTypes.number,
-    onRemove: React.PropTypes.func
+    discount: React.PropTypes.number,
+    onRemove: React.PropTypes.func,
+    onCoupon: React.PropTypes.func
 };
 
 module.exports = Cart;

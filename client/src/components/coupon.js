@@ -26,7 +26,8 @@ var Coupon = React.createClass({
 });
 
 Coupon.propTypes = {
-    total: React.PropTypes.number
+    discount: React.PropTypes.number,
+    onCoupon: React.PropTypes.func
 };
 
 module.exports = Coupon;
