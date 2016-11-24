@@ -14,6 +14,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('/api/products', require('./controllers/products'));
+app.get('/api/coupon/:id', require('./controllers/coupon'));
 
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../client/index.html'));

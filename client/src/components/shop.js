@@ -10,12 +10,17 @@ function calculateTotal(items) {
     return total;
 }
 
+function discountTotal(total, discount) {
+    return total * (1 - discount);
+}
+
 var Shop = React.createClass({
 
     getInitialState: function() {
         return {
             products: [],
             cart: [],
+            discount: 0,
             total: 0
         };
     },
@@ -85,7 +90,14 @@ var Shop = React.createClass({
         });
     },
 
+    onCoupon: function(discount) {
+        this.setState({
+            discount: discount
+        })
+    },
+
     render: function() {
+        var discountedTotal = discountTotal(this.state.total, this.state.discount);
         return (
             <div className="wrapper">
                 <header>
@@ -97,7 +109,9 @@ var Shop = React.createClass({
                 />
                 <Cart
                     items={this.state.cart}
-                    total={this.state.total}
+                    total={discountedTotal}
+                    discount={this.state.discount}
+                    onCoupon={this.onCoupon}
                     onRemove={this.onRemove}
                 />
             </div>

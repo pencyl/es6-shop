@@ -1,5 +1,6 @@
 var React = require('react');
 var CartItem = require('./cart-item');
+var Coupon = require('./coupon');
 
 var Cart = React.createClass({
 
@@ -19,7 +20,14 @@ var Cart = React.createClass({
             <div className="cart">
                 <h2>Cart</h2>
                 <table>
-                    <tbody>{items}</tbody>
+                    <tbody>
+                        {items}
+                        <Coupon
+                            total={this.props.total}
+                            discount={this.props.discount}
+                            onCoupon={this.props.onCoupon}
+                        />
+                    </tbody>
                     <tfoot>
                         <tr>
                             <td>Total</td>

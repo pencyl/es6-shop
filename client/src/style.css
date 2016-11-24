@@ -42,6 +42,7 @@ header, .cart, .products {
 
 header {
     background: #E98D00;
+    color:#fff;
 }
 
 header, .cart, .products {
@@ -90,7 +91,26 @@ header, .cart, .products {
     border-bottom: 1px solid gainsboro;
 }
 
+.cart tr td {
+    padding:10px;
+}
+
+.cart tr td:nth-child(3) {
+    width: 110px;
+}
+
 .cart tfoot td {
     font-weight: 500;
     padding: 1em 0;
+}
+
+.cart tr.coupon{
+    background:#E98D00;
+    color:#fff;
+}
+
+.cart tr.coupon input {
+    padding:4px;
+    color:#000;
+    font-size:14px;
 }
